@@ -1,0 +1,10 @@
+{
+  "clg": {
+    "prefix": "clg",
+    "body": [
+      "// eslint-disable-next-line",
+      "console.log($1)"
+    ],
+    "description": "Add console logging with disabled Linter"
+  }
+}

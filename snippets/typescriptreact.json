@@ -1,0 +1,24 @@
+{
+  "clg": {
+    "prefix": "clg",
+    "body": [
+      "// eslint-disable-next-line",
+      "console.log($1);"
+    ],
+    "description": "Add console logging with disabled Linter"
+  },
+  "test clg": {
+    "prefix": "clgsrc",
+    "body": [
+      "console.log(screen.debug());"
+    ],
+    "description": "Adds logging to the RTL test"
+  },
+  "expbr": {
+    "prefix": "expbr",
+    "body": [
+      "expect(screen.getByRole('$1')).toBeInTheDocument()"
+    ],
+    "description": "Adds a new role based expectation"
+  }
+}
