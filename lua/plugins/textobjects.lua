@@ -9,8 +9,8 @@ return {
           -- You can use the capture groups defined in textobjects.scm
           ["aa"] = "@parameter.outer",
           ["ia"] = "@parameter.inner",
-          ["ls"] = { query = "@assignment.lhs", desc = "Assignment left side" },
-          ["rs"] = { query = "@assignment.rhs", desc = "Assignment right side" },
+          ["sl"] = { query = "@assignment.lhs", desc = "Assignment left side" },
+          ["sr"] = { query = "@assignment.rhs", desc = "Assignment right side" },
           ["au"] = { query = "@attribute.outer", desc = "Attribute outer" },
           ["iu"] = { query = "@attribute.inner", desc = "Attribute inner" },
         },
