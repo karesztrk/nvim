@@ -48,11 +48,29 @@ require("lazy").setup({
   },
 })
 
-require("tabnine").setup({
-  disable_auto_comment = true,
-  accept_keymap = "<A-Enter>",
-  dismiss_keymap = "<A-BS>",
-  debounce_ms = 800,
-  suggestion_color = { gui = "#808080", cterm = 244 },
-  exclude_filetypes = { "TelescopePrompt" },
+-- Enables Obsidian UI tweaks
+vim.o.conceallevel = 2
+
+require("obsidian").setup({
+  workspaces = {
+    {
+      name = "personal",
+      path = "~/Vaults/mind-map/",
+    },
+    {
+      name = "compreg",
+      path = "~/Projects/CompReg/compreg/",
+    },
+  },
+  note_id_func = function(title)
+    local suffix = ""
+    if title ~= nil and title ~= "" then
+      suffix = title:gsub(" ", "-"):gsub("[^A-Za-z0-9-]", ""):lower()
+    else
+      for _ = 1, 4 do
+        suffix = suffix .. string.char(math.random(65, 90))
+      end
+    end
+    return tostring(os.time()) .. "-" .. suffix
+  end,
 })

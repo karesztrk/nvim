@@ -2,6 +2,31 @@ return {
   "nvim-treesitter/nvim-treesitter",
   opts = {
     textobjects = {
+      lsp_interop = {
+        enable = true,
+        border = "none",
+        floating_preview_opts = {},
+        peek_definition_code = {
+          ["<leader>tf"] = "@function.outer",
+          ["<leader>tF"] = "@class.outer",
+          ["<leader>ta"] = "@class.outer",
+          ["<leader>tu"] = "@class.outer",
+        },
+      },
+      move = {
+        enable = true,
+        set_jumps = true,
+        goto_next = {
+          ["óa"] = "@parameter.outer",
+          ["óf"] = "@function.outer",
+          ["óu"] = "@attribute.outer",
+        },
+        goto_previous = {
+          ["éa"] = "@parameter.outer",
+          ["éf"] = "@function.outer",
+          ["éu"] = "@attribute.outer",
+        },
+      },
       select = {
         enable = true,
         lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim

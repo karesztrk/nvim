@@ -1,23 +1,27 @@
 {
-    "name": "nvim-snippets",
-    "author": "karesztrk",
-    "engines": {
-        "vscode": "^1.11.0"
-    },
-    "contributes": {
-        "snippets": [
-            {
-                "language": "typescriptreact",
-                "path": "./typescriptreact.json"
-            },
-            {
-                "language": "typescript",
-                "path": "./typescript.json"
-            },
-            {
-                "language": "javascript",
-                "path": "./javascript.json"
-            }
-        ]
-    }
+  "name": "nvim-snippets",
+  "author": "karesztrk",
+  "engines": {
+    "vscode": "^1.11.0"
+  },
+  "contributes": {
+    "snippets": [
+      {
+        "language": "astro",
+        "path": "./astro.json"
+      },
+      {
+        "language": "typescriptreact",
+        "path": "./typescriptreact.json"
+      },
+      {
+        "language": "typescript",
+        "path": "./typescript.json"
+      },
+      {
+        "language": "javascript",
+        "path": "./javascript.json"
+      }
+    ]
+  }
 }

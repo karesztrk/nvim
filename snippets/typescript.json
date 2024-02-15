@@ -1,10 +1,12 @@
 {
   "clg": {
     "prefix": "clg",
-    "body": [
-      "// eslint-disable-next-line",
-      "console.log($1)"
-    ],
+    "body": ["// eslint-disable-next-line", "console.log($1)"],
     "description": "Add console logging with disabled Linter"
+  },
+  "tw": {
+    "prefix": "tw",
+    "body": ["await page.waitForSelector('wait');"],
+    "description": "Add a dummy await statement for a Playwright test"
   }
 }
