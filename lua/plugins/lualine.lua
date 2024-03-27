@@ -109,8 +109,8 @@ local config = {
       -- We are going to use lualine_c an lualine_x as left and
       -- right section. Both are highlighted by c theme .  So we
       -- are just setting default looks o statusline
-      normal = { c = { fg = palette.grey_5, bg = palette.grey_100 } },
-      inactive = { c = { fg = palette.grey_5, bg = palette.grey_100 } },
+      normal = { c = { fg = palette.grey_5, bg = "NONE" } },
+      inactive = { c = { fg = palette.grey_5, bg = "NONE" } },
     },
   },
   sections = {
