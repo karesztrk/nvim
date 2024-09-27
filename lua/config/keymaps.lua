@@ -11,7 +11,6 @@ vim.keymap.set("n", "<leader>d", function()
 end, { desc = "Lazydocker" })
 vim.keymap.set("n", "Y", "y$", { desc = "Yank to the end of the line" })
 vim.keymap.set("n", "qq", "<cmd>q!<cr>", { desc = "Fast quit" })
-vim.keymap.set("n", "<leader>uu", vim.cmd.UndotreeToggle, { desc = "Open Undo tree" })
 
 vim.keymap.set(
   "n",
