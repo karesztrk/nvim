@@ -21,6 +21,10 @@
       {
         "language": "javascript",
         "path": "./javascript.json"
+      },
+      {
+        "language": "svelte",
+        "path": "./svelte.json"
       }
     ]
   }
