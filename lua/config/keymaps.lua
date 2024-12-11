@@ -4,7 +4,7 @@
 
 vim.keymap.set("i", "jj", "<ESC>", { noremap = true, silent = true, desc = "<ESC>" })
 vim.keymap.set("n", "nn", "<cmd>:w<cr>", { noremap = true, silent = true, desc = "Save" })
-vim.keymap.set("n", "<leader>;", "<cmd>Dashboard<cr>", { desc = "Dashboard" })
+vim.keymap.set("n", "<leader>;", ":lua Snacks.dashboard()<cr>", { desc = "Dashboard" })
 vim.keymap.set("n", "<leader>d", function()
   Snacks.terminal.open({ "lazydocker" })
 end, { desc = "Lazydocker" })
