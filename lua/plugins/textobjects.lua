@@ -35,10 +35,12 @@ return {
           ["ia"] = "@parameter.inner",
           ["sl"] = { query = "@assignment.lhs", desc = "Assignment left side" },
           ["sr"] = { query = "@assignment.rhs", desc = "Assignment right side" },
+          ["aj"] = { query = "@assignment.outer", desc = "Assignment outer" },
+          ["ij"] = { query = "@assignment.inner", desc = "Assignment inner" },
           ["aw"] = { query = "@attribute.outer", desc = "Attribute outer" },
           ["iw"] = { query = "@attribute.inner", desc = "Attribute inner" },
-          ["ih"] = { query = "@conditional.inner", desc = "Conditional inner" },
           ["ah"] = { query = "@conditional.outer", desc = "Conditional outer" },
+          ["ih"] = { query = "@conditional.inner", desc = "Conditional inner" },
         },
         selection_modes = {
           ["@parameter.outer"] = "v", -- charwise
