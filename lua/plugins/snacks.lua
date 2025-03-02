@@ -95,7 +95,7 @@ return {
         inactiveBorderColor = { fg = "FloatBorder" },
         optionsTextColor = { fg = "Function" },
         searchingActiveBorderColor = { fg = "MatchParen", bold = true },
-        selectedLineBgColor = { bg = "Visual" }, -- set to `default` to have no background colour
+        selectedLineBgColor = { bg = "Visual" },
         unstagedChangesColor = { fg = "DiagnosticError" },
       },
     },
@@ -135,7 +135,7 @@ return {
         ---@type snacks.dashboard.Item[]
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-          { icon = " ", key = "p", desc = "Projects", action = pick },
+          { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
