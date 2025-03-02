@@ -84,7 +84,47 @@ end
 
 return {
   "folke/snacks.nvim",
+  keys = {
+    {
+      "<leader>,",
+      function()
+        Snacks.picker.buffers({
+          -- I always want my buffers picker to start in normal mode
+          on_show = function()
+            vim.cmd.stopinsert()
+          end,
+          finder = "buffers",
+          format = "buffer",
+          hidden = false,
+          unloaded = true,
+          current = true,
+          sort_lastused = true,
+          win = {
+            input = {
+              keys = {
+                ["dd"] = "bufdelete",
+              },
+            },
+            list = { keys = { ["dd"] = "bufdelete" } },
+          },
+        })
+      end,
+      desc = "Snacks picker buffers",
+    },
+  },
   opts = {
+    picker = {
+      debug = {
+        scores = true, -- show scores in the list
+      },
+      layout = {
+        preset = "default",
+        cycle = false,
+      },
+      matcher = {
+        frecency = false,
+      },
+    },
     lazygit = {
       theme = {
         [241] = { fg = "Special" },
@@ -135,7 +175,7 @@ return {
         ---@type snacks.dashboard.Item[]
         keys = {
           { icon = " ", key = "f", desc = "Find File", action = ":lua Snacks.dashboard.pick('files')" },
-          { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects()" },
+          { icon = " ", key = "p", desc = "Projects", action = ":lua Snacks.picker.projects({layout = 'vscode' })" },
           { icon = " ", key = "n", desc = "New File", action = ":ene | startinsert" },
           { icon = " ", key = "g", desc = "Find Text", action = ":lua Snacks.dashboard.pick('live_grep')" },
           { icon = " ", key = "r", desc = "Recent Files", action = ":lua Snacks.dashboard.pick('oldfiles')" },
