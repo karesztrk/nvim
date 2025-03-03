@@ -118,11 +118,21 @@ return {
         scores = true, -- show scores in the list
       },
       layout = {
-        preset = "default",
-        cycle = false,
+        preset = "vertical", -- default layout
+        cycle = false, -- cycle through pickers
       },
       matcher = {
-        frecency = false,
+        frecency = true,
+      },
+      win = {
+        input = {
+          keys = {
+            ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
+            ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
+            ["H"] = { "preview_scroll_left", mode = { "i", "n" } },
+            ["L"] = { "preview_scroll_right", mode = { "i", "n" } },
+          },
+        },
       },
     },
     lazygit = {
@@ -135,7 +145,7 @@ return {
         inactiveBorderColor = { fg = "FloatBorder" },
         optionsTextColor = { fg = "Function" },
         searchingActiveBorderColor = { fg = "MatchParen", bold = true },
-        selectedLineBgColor = { bg = "Visual" },
+        selectedLineBgColor = { bg = "CursorLine" },
         unstagedChangesColor = { fg = "DiagnosticError" },
       },
     },
