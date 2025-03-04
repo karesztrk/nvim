@@ -6,19 +6,8 @@ return {
       enable_cmp_source = vim.g.ai_cmp,
       virtual_text = {
         enabled = not vim.g.ai_cmp,
-
-        manual = false,
-        filetypes = {},
-        default_filetype_enabled = true,
-        idle_delay = 75,
-        virtual_text_priority = 65535,
-        map_keys = true,
-        accept_fallback = nil,
         key_bindings = {
-          accept = "<A-Enter>",
-          accept_word = false,
-          accept_line = false,
-          clear = false,
+          accept = false,
           next = "<A-,>",
           prev = "<A-.>",
         },

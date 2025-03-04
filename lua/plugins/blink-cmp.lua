@@ -21,8 +21,8 @@ return {
           from_top = false,
         },
       },
-      -- Do show ghost text when the menu is closed
-      ghost_text = { enabled = true, show_with_menu = false },
+      -- Dont show ghost text
+      ghost_text = { enabled = false },
       -- Manually open the completion menu
       menu = {
         auto_show = false,
@@ -33,6 +33,7 @@ return {
       compat = { "codeium" },
       providers = {
         codeium = {
+          name = "codeium",
           kind = "Codeium",
           score_offset = 100,
           async = true,
