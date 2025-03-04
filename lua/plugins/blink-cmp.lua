@@ -8,5 +8,40 @@ return {
         and vim.bo.buftype ~= "prompt"
         and vim.b.completion ~= false
     end
+    opts.completion = {
+      list = {
+        -- Do select the first, dont auto insert on selection
+        selection = {
+          preselect = true,
+          auto_insert = false,
+        },
+        -- Menu cycle is turned off
+        cycle = {
+          from_bottom = false,
+          from_top = false,
+        },
+      },
+      -- Do show ghost text when the menu is closed
+      ghost_text = { enabled = true, show_with_menu = false },
+      -- Manually open the completion menu
+      menu = {
+        auto_show = false,
+      },
+    }
+    opts.sources = {
+      default = { "lsp", "path", "snippets", "buffer", "codeium" },
+      compat = { "codeium" },
+      providers = {
+        codeium = {
+          kind = "Codeium",
+          score_offset = 100,
+          async = true,
+        },
+      },
+    }
+    -- My preferred way of selection
+    opts.keymap = {
+      preset = "enter",
+    }
   end,
 }

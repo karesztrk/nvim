@@ -3,9 +3,9 @@ return {
   config = function()
     require("codeium").setup({
       -- Optionally disable cmp source if using virtual text only
-      enable_cmp_source = false,
+      enable_cmp_source = vim.g.ai_cmp,
       virtual_text = {
-        enabled = true,
+        enabled = not vim.g.ai_cmp,
 
         manual = false,
         filetypes = {},
