@@ -21,28 +21,19 @@ return {
           from_top = false,
         },
       },
-      -- Dont show ghost text
-      ghost_text = { enabled = false },
+
+      -- Do show ghost text
+      ghost_text = { enabled = true },
       -- Manually open the completion menu
       menu = {
         auto_show = false,
-      },
-    }
-    opts.sources = {
-      default = { "lsp", "path", "snippets", "buffer", "codeium" },
-      compat = { "codeium" },
-      providers = {
-        codeium = {
-          name = "codeium",
-          kind = "Codeium",
-          score_offset = 100,
-          async = true,
-        },
+        direction_priority = { "n", "s" },
       },
     }
     -- My preferred way of selection
     opts.keymap = {
-      preset = "enter",
+      preset = "default",
+      ["<Right>"] = { "select_and_accept" },
     }
   end,
 }
