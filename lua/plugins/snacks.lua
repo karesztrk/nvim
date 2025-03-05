@@ -111,6 +111,20 @@ return {
       end,
       desc = "Snacks picker buffers",
     },
+    {
+      "<leader>se",
+      function()
+        Snacks.picker.icons()
+      end,
+      desc = "Snacks picker icons",
+    },
+    {
+      "<leader>su",
+      function()
+        Snacks.picker.undo()
+      end,
+      desc = "Snacks picker undo",
+    },
   },
   opts = {
     image = {
