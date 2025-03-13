@@ -8,7 +8,29 @@ return {
         and vim.bo.buftype ~= "prompt"
         and vim.b.completion ~= false
     end
+    opts.fuzzy = {
+      sorts = { "score", "sort_text" },
+    }
     opts.completion = {
+      accept = {
+        -- experimental auto-brackets support
+        auto_brackets = {
+          enabled = true,
+        },
+      },
+      menu = {
+        direction_priority = { "n", "s" },
+        draw = {
+          treesitter = { "lsp" },
+        },
+      },
+      documentation = {
+        auto_show = true,
+        auto_show_delay_ms = 200,
+      },
+      ghost_text = {
+        enabled = vim.g.ai_cmp,
+      },
       list = {
         -- Do select the first, dont auto insert on selection
         selection = {
@@ -21,19 +43,14 @@ return {
           from_top = false,
         },
       },
-
-      -- Do show ghost text
-      ghost_text = { enabled = true },
-      -- Manually open the completion menu
-      menu = {
-        auto_show = false,
-        direction_priority = { "n", "s" },
-      },
     }
     -- My preferred way of selection
     opts.keymap = {
-      preset = "default",
-      ["<Right>"] = { "select_and_accept" },
+      preset = "enter",
+      ["<A-Enter>"] = {
+        LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
+        "fallback",
+      },
     }
   end,
 }
