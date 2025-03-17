@@ -21,7 +21,22 @@ return {
       menu = {
         direction_priority = { "n", "s" },
         draw = {
-          treesitter = { "lsp" },
+          columns = { { "kind_icon" }, { "label", gap = 1 } },
+          components = {
+            label = {
+              text = function(ctx)
+                return require("colorful-menu").blink_components_text(ctx)
+              end,
+              highlight = function(ctx)
+                if ctx.kind == "Codeium" then
+                  -- AI code items are grayed out
+                  return "Comment"
+                end
+
+                return require("colorful-menu").blink_components_highlight(ctx)
+              end,
+            },
+          },
         },
       },
       documentation = {
