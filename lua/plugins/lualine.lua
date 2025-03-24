@@ -216,15 +216,10 @@ ins_left({
   color = { fg = "#ffffff", gui = "bold" },
 })
 
-local function codeium_status()
-  local status = require("codeium.virtual_text").status_string()
-  return status
-end
-
 -- Add components to right sections
 ins_right({
   function()
-    return codeium_status()
+    return require("codeium.virtual_text").status_string()
   end,
   color = { fg = palette.teal_light, gui = "bold" },
 })

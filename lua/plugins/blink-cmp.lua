@@ -1,13 +1,10 @@
 return {
   "saghen/blink.cmp",
-  dependencies = { "codeium.nvim", "saghen/blink.compat" },
+  dependencies = {
+    "codeium.nvim",
+    "saghen/blink.compat",
+  },
   opts = function(_, opts)
-    opts.enabled = function()
-      -- Get the current buffer's filetype
-      return not vim.tbl_contains({ "minifiles", "snacks_picker_input" }, vim.bo.filetype)
-        and vim.bo.buftype ~= "prompt"
-        and vim.b.completion ~= false
-    end
     opts.fuzzy = {
       sorts = { "score", "sort_text" },
     }
@@ -20,8 +17,22 @@ return {
       },
       menu = {
         direction_priority = { "n", "s" },
+        border = {
+          { "󱐋", "BlinkCmpMenuIcon" },
+          "─",
+          "╮",
+          "│",
+          "╯",
+          "─",
+          "╰",
+          "│",
+        },
         draw = {
-          columns = { { "kind_icon" }, { "label", gap = 1 } },
+          align_to = "cursor",
+          columns = {
+            { "kind_icon" },
+            { "label", gap = 1 },
+          },
           components = {
             label = {
               text = function(ctx)
@@ -61,11 +72,8 @@ return {
     }
     -- My preferred way of selection
     opts.keymap = {
-      preset = "enter",
-      ["<A-Enter>"] = {
-        LazyVim.cmp.map({ "snippet_forward", "ai_accept" }),
-        "fallback",
-      },
+      preset = "default",
+      ["<Right>"] = { "select_and_accept" },
     }
   end,
 }
