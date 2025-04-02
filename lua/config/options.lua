@@ -3,7 +3,4 @@
 -- Add any additional options here
 vim.g.snacks_scroll = false
 
--- Enables Obsidian UI tweaks
-vim.o.conceallevel = 2
-
 vim.g.ai_cmp = true
