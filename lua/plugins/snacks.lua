@@ -89,10 +89,6 @@ return {
       "<leader>,",
       function()
         Snacks.picker.buffers({
-          -- I always want my buffers picker to start in normal mode
-          on_show = function()
-            vim.cmd.stopinsert()
-          end,
           finder = "buffers",
           format = "buffer",
           hidden = false,
@@ -119,11 +115,14 @@ return {
       desc = "Snacks picker icons",
     },
     {
-      "<leader>su",
-      function()
-        Snacks.picker.undo()
-      end,
-      desc = "Snacks picker undo",
+      "<leader><space>",
+      LazyVim.pick("files", { focus = "input" }),
+      desc = "Find Files (Root Dir)",
+    },
+    {
+      "<leader>sg",
+      LazyVim.pick("live_grep", { focus = "input" }),
+      desc = "Grep (Root Dir)",
     },
   },
   opts = {
@@ -137,9 +136,8 @@ return {
       },
     },
     picker = {
-      debug = {
-        scores = true, -- show scores in the list
-      },
+      -- I always want my buffers picker to start in normal mode
+      focus = "list",
       layout = {
         preset = "vertical", -- default layout
         cycle = false, -- cycle through pickers
@@ -157,7 +155,17 @@ return {
           },
         },
       },
+      formatters = {
+        file = {
+          filename_first = true, -- display filename before the file path
+          truncate = 40,
+          filename_only = false,
+          icon_width = 2,
+          git_status_hl = true,
+        },
+      },
     },
+
     lazygit = {
       theme = {
         [241] = { fg = "Special" },

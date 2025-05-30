@@ -4,3 +4,5 @@
 vim.g.snacks_scroll = false
 
 vim.g.ai_cmp = true
+
+vim.g.lazyvim_prettier_needs_config = true

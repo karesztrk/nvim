@@ -7,6 +7,7 @@ return {
   opts = function(_, opts)
     opts.fuzzy = {
       sorts = { "score", "sort_text" },
+      use_frecency = false,
     }
     opts.completion = {
       accept = {
