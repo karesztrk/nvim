@@ -25,7 +25,7 @@ vim.api.nvim_create_autocmd("User", {
     local mini_files = require("mini.files")
 
     -- Copy the current file or directory path (relative to home) to clipboard
-    vim.keymap.set("n", "<M-c>", function()
+    vim.keymap.set("n", "@", function()
       -- Get the current entry (file or directory)
       local curr_entry = mini_files.get_fs_entry()
       if curr_entry then

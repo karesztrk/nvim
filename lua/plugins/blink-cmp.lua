@@ -1,10 +1,18 @@
 return {
   "saghen/blink.cmp",
   dependencies = {
-    "codeium.nvim",
     "saghen/blink.compat",
   },
   opts = function(_, opts)
+    opts.enabled = function()
+      -- Get the current buffer's filetype
+      local filetype = vim.bo[0].filetype
+      -- Disable for pickers
+      if filetype == "TelescopePrompt" or filetype == "minifiles" or filetype == "snacks_picker_input" then
+        return false
+      end
+      return true
+    end
     opts.fuzzy = {
       sorts = { "score", "sort_text" },
       use_frecency = false,
@@ -17,6 +25,7 @@ return {
         },
       },
       menu = {
+        auto_show = false, -- only show menu on manual <C-space>
         direction_priority = { "n", "s" },
         border = {
           { "󱐋", "BlinkCmpMenuIcon" },
@@ -57,6 +66,7 @@ return {
       },
       ghost_text = {
         enabled = vim.g.ai_cmp,
+        show_with_menu = false, -- only show when menu is closed
       },
       list = {
         -- Do select the first, dont auto insert on selection
@@ -75,6 +85,9 @@ return {
     opts.keymap = {
       preset = "default",
       ["<Right>"] = { "select_and_accept" },
+    }
+    opts.cmdline = {
+      enabled = false,
     }
   end,
 }
