@@ -26,7 +26,7 @@ return {
           right = "",
         },
         hl = {
-          normal = "Cursor",
+          normal = "Function",
           visual = "Define",
           insert = "Number",
           replace = "Number",
@@ -82,7 +82,8 @@ return {
       filetype_lsp = {
         style = "bg",
         hl = {
-          primary = "Cursor",
+          primary = "Function",
+          secondary = "NotifyINFOTitle",
         },
         sep = {
           left = "",
