@@ -7,4 +7,5 @@ vim.g.ai_cmp = true
 
 vim.g.lazyvim_prettier_needs_config = true
 
-vim.o.completeopt = "menu,menuone"
+-- Remove intro message (show welcome screen)
+vim.opt.shortmess:remove("I")
