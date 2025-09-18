@@ -43,30 +43,18 @@ return {
             { "kind_icon" },
             { "label", gap = 1 },
           },
-          components = {
-            label = {
-              text = function(ctx)
-                return require("colorful-menu").blink_components_text(ctx)
-              end,
-              highlight = function(ctx)
-                if ctx.kind == "Codeium" then
-                  -- AI code items are grayed out
-                  return "Comment"
-                end
-
-                return require("colorful-menu").blink_components_highlight(ctx)
-              end,
-            },
-          },
         },
       },
       documentation = {
+        window = {
+          border = "rounded",
+          winblend = 0,
+        },
         auto_show = true,
         auto_show_delay_ms = 200,
       },
       ghost_text = {
-        enabled = vim.g.ai_cmp,
-        show_with_menu = false, -- only show when menu is closed
+        enabled = false,
       },
       list = {
         -- Do select the first, dont auto insert on selection

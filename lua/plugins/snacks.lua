@@ -121,7 +121,7 @@ return {
     },
     {
       "<leader>sg",
-      LazyVim.pick("live_grep", { focus = "input" }),
+      LazyVim.pick("live_grep", { focus = "input", hidden = true }),
       desc = "Grep (Root Dir)",
     },
   },

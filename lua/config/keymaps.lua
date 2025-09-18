@@ -28,3 +28,19 @@ vim.keymap.set("n", "<leader>@", function()
   vim.fn.setreg("+", path)
   print("file:", path)
 end, { desc = "Copy file path" })
+
+-- Daily notes keymaps
+local notes = require("notes")
+vim.keymap.set("n", "<leader>fd", function()
+  local current_line = vim.api.nvim_get_current_line()
+  local date_line = current_line:match("%[%[%d+%-%d+%-%d+%-%w+%]%]") or ("[[" .. os.date("%Y-%m-%d-%A") .. "]]")
+  notes.switch_to_daily_note(date_line)
+end, { desc = "Go to or create daily note" })
+
+vim.keymap.set("n", "<leader>fA", function()
+  notes.create_next_n_days(1)
+end, { desc = "Create next day's daily note from current file" })
+
+vim.keymap.set("n", "<leader>fW", function()
+  notes.create_next_n_days(7)
+end, { desc = "Create next week's daily notes from current file" })

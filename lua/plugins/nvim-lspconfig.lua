@@ -4,7 +4,7 @@ return {
     event = "LazyFile",
     dependencies = {
       "mason.nvim",
-      "williamboman/mason-lspconfig.nvim",
+      "mason-org/mason-lspconfig.nvim",
     },
     opts = {
       diagnostics = {

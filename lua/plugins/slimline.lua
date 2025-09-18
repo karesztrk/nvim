@@ -89,6 +89,7 @@ return {
           left = "",
           right = "",
         },
+        lsp_sep = "+",
       },
     },
     components = {
