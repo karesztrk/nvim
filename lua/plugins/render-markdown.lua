@@ -11,5 +11,11 @@ return {
       position = "inline",
       icons = { "󰲡 ", "󰲣 ", "󰲥 ", "󰲧 ", "󰲩 ", "󰲫 " },
     },
+    html = {
+      comment = {
+        conceal = true,
+        text = "~",
+      },
+    },
   },
 }

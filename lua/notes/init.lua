@@ -4,7 +4,7 @@ local notes = {}
 -- parse date line and generate file path components for the daily note
 local function parse_date_line(date_line)
   local home = os.getenv("HOME")
-  local year, month, day, weekday = date_line:match("%[%[(%d+)%-(%d+)%-(%d+)%-(%w+)%]%]")
+  local year, month, day, weekday = date_line:match("%[%[(%d+)%-(%d+)%-(%d+)%-(.+)%]%]")
   if not (year and month and day and weekday) then
     print("No valid date found in the line")
     return nil
@@ -36,7 +36,9 @@ function notes.create_daily_note(date_line)
   if vim.fn.filereadable(full_path) == 0 then
     local file = io.open(full_path, "w")
     if file then
-      file:write("# Contents\n\n<!-- toc -->\n\n- [Daily note](#daily-note)\n\n<!-- tocstop -->\n\n## Daily note\n")
+      file:write(
+        "# Contents\n\n<!-- toc -->\n\n- [Daily note](#daily-note)\n\n<!-- tocstop -->\n\n## Daily note\n\n## TIL\n"
+      )
       file:close()
       vim.cmd("edit " .. vim.fn.fnameescape(full_path))
       vim.cmd("bd!")

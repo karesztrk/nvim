@@ -9,3 +9,6 @@ vim.g.lazyvim_prettier_needs_config = true
 
 -- Remove intro message (show welcome screen)
 vim.opt.shortmess:remove("I")
+
+-- Set to false to disable auto format
+vim.g.lazyvim_eslint_auto_format = false
