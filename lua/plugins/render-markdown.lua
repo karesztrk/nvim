@@ -17,5 +17,18 @@ return {
         text = "~",
       },
     },
+    checkbox = {
+      enabled = true,
+      render_modes = false,
+      bullet = false,
+      unchecked = {
+        icon = "󰄱 ",
+        scope_highlight = nil,
+      },
+      checked = {
+        icon = "󰱒 ",
+        scope_highlight = "@markup.strikethrough",
+      },
+    },
   },
 }

@@ -1,8 +1,23 @@
 return {
   "saghen/blink.cmp",
-  dependencies = {
-    "saghen/blink.compat",
+  version = not vim.g.lazyvim_blink_main and "*",
+  build = vim.g.lazyvim_blink_main and "cargo build --release",
+  opts_extend = {
+    "sources.completion.enabled_providers",
+    "sources.compat",
+    "sources.default",
   },
+  dependencies = {
+    "rafamadriz/friendly-snippets",
+    -- add blink.compat to dependencies
+    {
+      "saghen/blink.compat",
+      optional = true, -- make optional so it's only enabled if any extras need it
+      opts = {},
+      version = not vim.g.lazyvim_blink_main and "*",
+    },
+  },
+  event = { "InsertEnter", "CmdlineEnter" },
   opts = function(_, opts)
     opts.enabled = function()
       -- Get the current buffer's filetype
@@ -13,13 +28,18 @@ return {
       end
       return true
     end
-    opts.fuzzy = {
-      sorts = { "score", "sort_text" },
-      use_frecency = false,
+    opts.appearance = {
+      -- sets the fallback highlight groups to nvim-cmp's highlight groups
+      -- useful for when your theme doesn't support blink.cmp
+      -- will be removed in a future release, assuming themes add support
+      use_nvim_cmp_as_default = false,
+      -- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+      -- adjusts spacing to ensure icons are aligned
+      nerd_font_variant = "mono",
     }
+
     opts.completion = {
       accept = {
-        -- experimental auto-brackets support
         auto_brackets = {
           enabled = true,
         },
@@ -38,6 +58,7 @@ return {
           "│",
         },
         draw = {
+          treesitter = { "lsp" },
           align_to = "cursor",
           columns = {
             { "kind_icon" },
@@ -54,7 +75,7 @@ return {
         auto_show_delay_ms = 200,
       },
       ghost_text = {
-        enabled = false,
+        enabled = vim.g.ai_cmp,
       },
       list = {
         -- Do select the first, dont auto insert on selection
@@ -68,6 +89,16 @@ return {
           from_top = false,
         },
       },
+    }
+
+    -- experimental signature help support
+    opts.signature = { enabled = true }
+
+    opts.sources = {
+      -- adding any nvim-cmp sources here will enable them
+      -- with blink.compat
+      compat = {},
+      default = { "lsp", "path", "snippets", "buffer" },
     }
     -- My preferred way of selection
     opts.keymap = {
