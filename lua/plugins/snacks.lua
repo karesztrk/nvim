@@ -126,6 +126,10 @@ return {
     },
   },
   opts = {
+    statuscolumn = {
+      -- I prefer the default status column look'n'feel
+      enabled = false,
+    },
     image = {
       enabled = true,
       doc = {
@@ -179,19 +183,6 @@ return {
         selectedLineBgColor = { bg = "CursorLine" },
         unstagedChangesColor = { fg = "DiagnosticError" },
       },
-    },
-    statuscolumn = {
-      left = { "mark", "sign" },
-      right = { "fold", "git" },
-      folds = {
-        open = false, -- show open fold icons
-        git_hl = false, -- use Git Signs hl for fold icons
-      },
-      git = {
-        -- patterns to match Git signs
-        patterns = { "GitSign", "MiniDiffSign" },
-      },
-      refresh = 50, -- refresh at most every 50ms
     },
     dashboard = {
       enabled = false,

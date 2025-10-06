@@ -12,3 +12,8 @@ vim.opt.shortmess:remove("I")
 
 -- Set to false to disable auto format
 vim.g.lazyvim_eslint_auto_format = false
+
+-- Width of the left status column
+vim.opt.numberwidth = 4
+-- I prefer the default status column
+vim.opt.statuscolumn = ""
