@@ -23,7 +23,7 @@ return {
         verbose = false,
         sep = {
           left = "",
-          right = "",
+          right = "█◣",
         },
         hl = {
           normal = "Function",

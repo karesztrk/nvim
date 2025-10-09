@@ -1,6 +1,32 @@
 return {
   "MeanderingProgrammer/render-markdown.nvim",
   opts = {
+    link = {
+      -- Turn on / off inline link icon rendering.
+      enabled = true,
+      -- Additional modes to render links.
+      render_modes = false,
+      -- How to handle footnote links, start with a '^'.
+      footnote = {
+        -- Turn on / off footnote rendering.
+        enabled = true,
+        -- Inlined with content.
+        icon = "󰯔 ",
+        -- Replace value with superscript equivalent.
+        superscript = true,
+        -- Added before link content.
+        prefix = "",
+        -- Added after link content.
+        suffix = "",
+      },
+      custom = {
+        web = { pattern = "^http", icon = "󰖟 " },
+        jira = { pattern = "atlassian.net", icon = " " },
+        github = { pattern = "github%.com", icon = "󰊤 " },
+        gitlab = { pattern = "gitlab%.com", icon = "󰮠 " },
+        stackoverflow = { pattern = "stackoverflow%.com", icon = "󰓌 " },
+      },
+    },
     code = {
       sign = false,
       width = "block",
