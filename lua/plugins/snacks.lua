@@ -152,6 +152,7 @@ return {
       win = {
         input = {
           keys = {
+            ["<Tab>"] = { "focus_preview", mode = { "i", "n" } },
             ["J"] = { "preview_scroll_down", mode = { "i", "n" } },
             ["K"] = { "preview_scroll_up", mode = { "i", "n" } },
             ["H"] = { "preview_scroll_left", mode = { "i", "n" } },

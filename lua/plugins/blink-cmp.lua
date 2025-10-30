@@ -9,6 +9,7 @@ return {
   },
   dependencies = {
     "rafamadriz/friendly-snippets",
+    -- "fang2hou/blink-copilot",
     -- add blink.compat to dependencies
     {
       "saghen/blink.compat",
@@ -95,10 +96,20 @@ return {
     opts.signature = { enabled = true }
 
     opts.sources = {
-      -- adding any nvim-cmp sources here will enable them
-      -- with blink.compat
-      compat = {},
-      default = { "lsp", "path", "snippets", "buffer" },
+      default = {
+        -- "copilot",
+        "lsp",
+        "path",
+        "snippets",
+        "buffer",
+      },
+      -- providers = {
+      --   copilot = {
+      --     name = "copilot",
+      --     module = "blink-copilot",
+      --     async = true,
+      --   },
+      -- },
     }
     -- My preferred way of selection
     opts.keymap = {

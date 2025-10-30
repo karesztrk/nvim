@@ -37,7 +37,7 @@ function notes.create_daily_note(date_line)
     local file = io.open(full_path, "w")
     if file then
       file:write(
-        "# Contents\n\n<!-- toc:start -->\n\n- [Daily note](#daily-note)\n\n<!-- toc:end -->\n\n## Daily note\n\n## TIL\n"
+        "# Contents\n\n<!-- toc -->\n\n- [Daily note](#daily-note)\n\n<!-- tocstop -->\n\n## Daily note\n\n## TIL\n"
       )
       file:close()
       vim.cmd("edit " .. vim.fn.fnameescape(full_path))

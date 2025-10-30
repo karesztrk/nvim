@@ -25,6 +25,7 @@ return {
         github = { pattern = "github%.com", icon = "󰊤 " },
         gitlab = { pattern = "gitlab%.com", icon = "󰮠 " },
         stackoverflow = { pattern = "stackoverflow%.com", icon = "󰓌 " },
+        slack = { pattern = "slack.com", icon = " " },
       },
     },
     code = {
