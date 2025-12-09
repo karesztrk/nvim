@@ -17,3 +17,6 @@ vim.g.lazyvim_eslint_auto_format = false
 vim.opt.numberwidth = 4
 -- I prefer the default status column
 vim.opt.statuscolumn = ""
+
+-- Show column at 120 characters
+vim.opt.colorcolumn = "120"
