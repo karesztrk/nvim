@@ -1,3 +1,2 @@
-# 💤 LazyVim
+# Minimal NeoVim v12+ configuration
 
-Custom LazyVim configuration

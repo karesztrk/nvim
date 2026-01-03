@@ -1,18 +1,8 @@
-return {
-  {
-    "neovim/nvim-lspconfig",
-    event = "LazyFile",
-    dependencies = {
-      "mason.nvim",
-      "mason-org/mason-lspconfig.nvim",
-    },
-    opts = {
-      diagnostics = {
-        virtual_text = false,
-        virtual_lines = {
-          current_line = true,
-        },
-      },
-    },
-  },
-}
+vim.pack.add({
+  "https://github.com/neovim/nvim-lspconfig.git",
+})
+
+-- nvim-lspconfig provides LSP configurations
+-- No setup required - use with other LSP plugins like mason-lspconfig
+-- Example usage:
+-- require('lspconfig').lua_ls.setup({})

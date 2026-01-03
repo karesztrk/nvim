@@ -1,0 +1,57 @@
+{
+  "plugins": {
+    "conform.nvim": {
+      "rev": "8314f4c9e205e7f30b62147069729f9a1227d8bf",
+      "src": "https://github.com/stevearc/conform.nvim.git"
+    },
+    "gitsigns.nvim": {
+      "rev": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a",
+      "src": "https://github.com/lewis6991/gitsigns.nvim.git"
+    },
+    "mini.files": {
+      "rev": "22c64f010eef047ed270e29e7cc266cd4740787e",
+      "src": "https://github.com/nvim-mini/mini.files.git"
+    },
+    "mini.icons": {
+      "rev": "efc85e42262cd0c9e1fdbf806c25cb0be6de115c",
+      "src": "https://github.com/nvim-mini/mini.icons.git"
+    },
+    "mini.pick": {
+      "rev": "8cb40ee55dd156957b1116eded6135e6aeaa078b",
+      "src": "https://github.com/nvim-mini/mini.pick.git"
+    },
+    "mini.splitjoin": {
+      "rev": "9fcd8856efb95a505090c3225726466494076127",
+      "src": "https://github.com/nvim-mini/mini.splitjoin.git"
+    },
+    "mini.surround": {
+      "rev": "cc7b9d0a056b5fa6915ffac1cb91f29bf7c96f69",
+      "src": "https://github.com/nvim-mini/mini.surround.git"
+    },
+    "nu_disco.nvim": {
+      "rev": "02eeadc334ef0de05e258a4c4b4b08e5f2cb1e36",
+      "src": "https://github.com/karesztrk/nu_disco.nvim.git"
+    },
+    "nvim-lspconfig": {
+      "rev": "ac04ec3c2af08e9821b4eb64ede86072b9b213bf",
+      "src": "https://github.com/neovim/nvim-lspconfig.git"
+    },
+    "nvim-treesitter": {
+      "rev": "42fc28ba918343ebfd5565147a42a26580579482",
+      "src": "https://github.com/nvim-treesitter/nvim-treesitter",
+      "version": "'master'"
+    },
+    "pack-manager.nvim": {
+      "rev": "e947437ab03c2e20d7eb4e27d1a5f043a9ab1d72",
+      "src": "https://github.com/mplusp/pack-manager.nvim"
+    },
+    "render-markdown.nvim": {
+      "rev": "acddb80d9a12e33c03ca288de39c9963396f358a",
+      "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
+    },
+    "slimline.nvim": {
+      "rev": "b23d6239ae06d7b422b30b227756971348ffcd68",
+      "src": "https://github.com/sschleemilch/slimline.nvim.git"
+    }
+  }
+}
