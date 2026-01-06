@@ -5,8 +5,6 @@ vim.opt.cursorline = true     -- Highlight current line
 vim.opt.wrap = false          -- Don't wrap lines
 vim.opt.scrolloff = 10        -- Keep 10 lines above/below cursor
 vim.opt.sidescrolloff = 8     -- Keep 8 columns left/right of cursor
--- vim.opt.numberwidth = 4                         -- Width of the left status column
--- vim.opt.statuscolumn = ""                       -- Default status line
 
 -- Indentation
 vim.opt.tabstop = 2        -- Tab width
@@ -90,72 +88,6 @@ vim.opt.diffopt:append("linematch:60")
 vim.opt.redrawtime = 10000
 vim.opt.maxmempattern = 20000
 
--- === Status line ===
-local invader = "󰯉"
-local ghost = "󰊠"
-local pacman = "󰮯"
-local mushroom = "󰟟"
-local tank = "󰴺"
-
--- Mode indicators with icons
-function _G.mode_icon()
-  local mode = vim.fn.mode()
-  local modes = {
-    n = "NORMAL",
-    i = "INSERT",
-    v = "VISUAL",
-    V = "V-LINE",
-    ["\22"] = "V-BLOCK", -- Ctrl-V
-    c = "COMMAND",
-    s = "SELECT",
-    S = "S-LINE",
-    ["\19"] = "S-BLOCK", -- Ctrl-S
-    R = "REPLACE",
-    r = "REPLACE",
-    ["!"] = "SHELL",
-    t = "TERMINAL"
-  }
-
-  if vim.g.have_nerd_font then
-    modes = {
-      n = invader,
-      i = pacman,
-      v = ghost,
-      V = ghost,
-      ["\22"] = ghost, -- Ctrl-V
-      c = tank,
-      s = "SELECT",
-      S = "S-LINE",
-      ["\19"] = "S-BLOCK", -- Ctrl-S
-      R = pacman,
-      r = pacman,
-      ["!"] = "SHELL",
-      t = mushroom
-    }
-  end
-  return modes[mode] or ("  " .. mode:upper())
-end
-
-function _G.active_lsp()
-  local clients = vim.lsp.get_clients({ bufnr = 0 })
-  if #clients == 0 then
-    return ""
-  end
-
-  local names = {}
-  for _, client in ipairs(clients) do
-    table.insert(names, client.name)
-  end
-  return "[" .. table.concat(names, "+") .. "]"
-end
-
-vim.opt.statusline = table.concat {
-  " ",
-  "%{v:lua.mode_icon()}  ",
-  "%t ",
-  "%h%m%r",
-  "%=", -- Right-align everything after this
-  "%S ",
-  "%y ",
-  "%{v:lua.active_lsp()} ",
-}
+-- Custom status line
+local statusline = require('plugins.statusline').statusline
+vim.opt.statusline = statusline

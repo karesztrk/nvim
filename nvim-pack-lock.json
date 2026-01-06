@@ -5,7 +5,7 @@
       "src": "https://github.com/stevearc/conform.nvim.git"
     },
     "gitsigns.nvim": {
-      "rev": "6bd29494e3f79ff08be1d35bc1926ed23c22ed9a",
+      "rev": "dfac404ac94b0eb1461bd7da32279e16950dfd67",
       "src": "https://github.com/lewis6991/gitsigns.nvim.git"
     },
     "mini.files": {
@@ -17,7 +17,7 @@
       "src": "https://github.com/nvim-mini/mini.icons.git"
     },
     "mini.pick": {
-      "rev": "8cb40ee55dd156957b1116eded6135e6aeaa078b",
+      "rev": "aa242acc17683515d8f749552aebe061bced9132",
       "src": "https://github.com/nvim-mini/mini.pick.git"
     },
     "mini.splitjoin": {
@@ -29,11 +29,11 @@
       "src": "https://github.com/nvim-mini/mini.surround.git"
     },
     "nu_disco.nvim": {
-      "rev": "02eeadc334ef0de05e258a4c4b4b08e5f2cb1e36",
+      "rev": "949157e3b916358fb5b65ae6c38c3b9d5b2f7b58",
       "src": "https://github.com/karesztrk/nu_disco.nvim.git"
     },
     "nvim-lspconfig": {
-      "rev": "ac04ec3c2af08e9821b4eb64ede86072b9b213bf",
+      "rev": "0b38bc74487e73489624d61396af7805af9cc75f",
       "src": "https://github.com/neovim/nvim-lspconfig.git"
     },
     "nvim-treesitter": {
@@ -46,7 +46,7 @@
       "src": "https://github.com/mplusp/pack-manager.nvim"
     },
     "render-markdown.nvim": {
-      "rev": "acddb80d9a12e33c03ca288de39c9963396f358a",
+      "rev": "da6a7b25471ab23824f3429225973186eb0b62d2",
       "src": "https://github.com/MeanderingProgrammer/render-markdown.nvim.git"
     },
     "slimline.nvim": {
