@@ -4,5 +4,10 @@ vim.pack.add({
 
 -- mini.pick configuration
 require("mini.pick").setup({
-  -- Add your configuration here
+  mappings = {
+    toggle_info    = '<C-k>',
+    toggle_preview = '<C-p>',
+    move_down      = '<Tab>',
+    move_up        = '<S-Tab>',
+  }
 })
