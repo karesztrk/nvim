@@ -37,14 +37,14 @@ function notes.create_daily_note(date_line)
     local file = io.open(full_path, "w")
     if file then
       file:write(
-        "# Contents\n\n<!-- toc -->\n\n- [Daily note](#daily-note)\n\n<!-- tocstop -->\n\n## Daily note\n\n## TIL\n"
+        "# Contents\n\n## Daily note\n\n## TIL\n"
       )
       file:close()
       vim.cmd("edit " .. vim.fn.fnameescape(full_path))
       vim.cmd("bd!")
       vim.api.nvim_echo({
         { "CREATED DAILY NOTE\n", "WarningMsg" },
-        { full_path, "WarningMsg" },
+        { full_path,              "WarningMsg" },
       }, false, {})
     else
       print("Failed to create file: " .. full_path)
@@ -62,6 +62,7 @@ function notes.switch_to_daily_note(date_line)
   notes.create_daily_note(date_line)
   vim.cmd("edit " .. vim.fn.fnameescape(full_path))
 end
+
 -- Extract the Y-M-D parts from the current filename
 local function current_file_date()
   local fname = vim.fn.expand("%:t")
