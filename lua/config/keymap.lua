@@ -37,7 +37,9 @@ vim.keymap.set("v", "<", "<gv", { desc = "Indent left and reselect" })
 vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Navigation & pickers
-vim.keymap.set("n", "<leader>e", ":lua MiniFiles.open()<CR>", { desc = "Open file explorer" })
+vim.keymap.set("n", "<leader>e", function()
+  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+end, { desc = "Open file explorer" })
 vim.keymap.set("n", "<leader><space>", ":Pick files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>sg", ":Pick grep_live<CR>", { desc = "Find in files" })
 vim.keymap.set("n", "<leader>,", ":Pick buffers<CR>", { desc = "Find in buffers" })
@@ -77,10 +79,13 @@ vim.keymap.set('v', '<leader>x', '<Cmd>:lua<CR>', { desc = 'Lua: execute current
 
 -- Terminal
 vim.keymap.set("n", "<leader>gg", '<Cmd>:FloatingTerminal lazygit<CR>', { desc = "Open LazyGit" })
-vim.keymap.set("n", "<leader>jj", '<Cmd>:FloatingTerminal lazyjj<CR>', { desc = "Open LazyJujutsu" })
+vim.keymap.set("n", "<leader>jj", '<Cmd>:FloatingTerminal jjui<CR>', { desc = "Open Jujutsu UI" })
+vim.keymap.set("n", "<leader>sq", '<Cmd>:FloatingTerminal lazysql<CR>', { desc = "Open Lazysql" })
 vim.keymap.set("n", "<leader>dd", '<Cmd>:FloatingTerminal lazydocker<CR>', { desc = "Open LazyDocker" })
 vim.keymap.set("n", "<leader>tt", '<Cmd>:FloatingTerminal<CR>', { desc = "Toggle floating terminal" })
 vim.keymap.set("t", "qq", '<Cmd>:CloseFloatingTerminal<CR>', { desc = "Close floating terminal from terminal mode" })
+vim.keymap.set("t", "<leader>q", '<Cmd>:NormalFloatingTerminal<CR>',
+  { desc = "Close floating terminal from terminal mode" })
 
 -- Auto-close pairs
 vim.keymap.set("i", "`", "``<left>")
@@ -161,3 +166,20 @@ vim.keymap.set("n", "<leader>ghb", '<Cmd>:Gitsigns blame_line<CR>', { desc = "Bl
 vim.keymap.set("n", "<leader>ghr", '<Cmd>:Gitsigns reset_hunk<CR>', { desc = "Reset the current hunk" })
 vim.keymap.set("n", "<leader>ghd", '<Cmd>:Gitsigns diffthis<CR>', { desc = "Diff this" })
 vim.keymap.set("n", "<leader>ghp", '<Cmd>:Gitsigns preview_hunk_inline<CR>', { desc = "Preview this hunk" })
+
+-- Snippets
+vim.keymap.set('i', '<C-k>', '<cmd>lua _G.expand_snippet()<CR>', { desc = 'Expand snippet' })
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+  if vim.snippet.active({ direction = 1 }) then
+    return '<cmd>lua vim.snippet.jump(1)<cr>'
+  else
+    return '<Tab>'
+  end
+end, { expr = true, desc = 'Jump forward through tabstops' })
+vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
+  if vim.snippet.active({ direction = -1 }) then
+    return '<cmd>lua vim.snippet.jump(-1)<cr>'
+  else
+    return '<S-Tab>'
+  end
+end, { expr = true, desc = 'Jump backward through tabstops' })

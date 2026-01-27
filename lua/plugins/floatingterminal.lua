@@ -48,9 +48,9 @@ local toggle_floating_terminal = function(opts)
     state.floating = create_floating_window { buf = state.floating.buf }
     if vim.bo[state.floating.buf].buftype ~= "terminal" then
       local cmd = opts.fargs[1];
-      if cmd then 
+      if cmd then
         vim.cmd.terminal(cmd)
-      else 
+      else
         vim.cmd.terminal()
       end
 
@@ -79,5 +79,15 @@ local function close_floating_terminal()
   end
 end
 
-vim.api.nvim_create_user_command("FloatingTerminal", toggle_floating_terminal, { desc = "Open a floating terminal", nargs = '?' })
-vim.api.nvim_create_user_command("CloseFloatingTerminal", close_floating_terminal, { desc = "Close a floating terminal", })
+local function normal_floating_terminal()
+  if vim.api.nvim_win_is_valid(state.floating.win) then
+    vim.cmd("stopinsert")
+  end
+end
+
+vim.api.nvim_create_user_command("FloatingTerminal", toggle_floating_terminal,
+  { desc = "Open a floating terminal", nargs = '?' })
+vim.api.nvim_create_user_command("NormalFloatingTerminal", normal_floating_terminal,
+  { desc = "Open a floating terminal", nargs = '?' })
+vim.api.nvim_create_user_command("CloseFloatingTerminal", close_floating_terminal,
+  { desc = "Close a floating terminal", })

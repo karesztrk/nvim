@@ -13,6 +13,7 @@ require("conform").setup({
     javascriptreact = { "biome", "prettier", stop_after_first = true },
     typescriptreact = { "biome", "prettier", stop_after_first = true },
     css = { "prettier" },
+    scss = { "prettier" },
     html = { "html", "prettier", stop_after_first = true },
     rust = { "rustfmt", lsp_format = "fallback" },
     astro = { "biome", "prettier", stop_after_first = true },
@@ -35,6 +36,6 @@ require("conform").setup({
     if bufname:match("/node_modules/") then
       return
     end
-    return { timeout_ms = 1000, lsp_format = "fallback" }
+    return { timeout_ms = 5000, lsp_format = "fallback" }
   end,
 })
