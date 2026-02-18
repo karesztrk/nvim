@@ -124,3 +124,12 @@ vim.api.nvim_create_user_command("FormatEnable", function()
   vim.g.disable_autoformat = false
   vim.notify("Autoformat enabled", vim.log.levels.INFO)
 end, { desc = "Re-enable autoformat-on-save" })
+
+-- mini.files relative line numbers
+vim.api.nvim_create_autocmd("User", {
+  pattern = "MiniFilesWindowUpdate",
+  callback = function(args)
+    vim.wo[args.data.win_id].number = true;
+    vim.wo[args.data.win_id].relativenumber = true
+  end
+})
