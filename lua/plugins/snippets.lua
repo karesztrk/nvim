@@ -7,8 +7,12 @@ local js_base = {
 }
 
 local react_extra = {
-  uses = "const [$1, set${1/(.*)/${1:/capitalize}/}] = useState($2)",
+  uses = "const [$1, set$1] = useState($2)",
   usef = "useEffect(() => {\n\t$0\n}, [$1])",
+  expbr = "expect(screen.getByRole('$1'));",
+  exptxt = "expect(screen.getByText('$1')).toBeInTheDocument();",
+  clgsrc = "console.log(screen.debug())",
+  rafce = "const $1 = () => {\n\treturn <div>$0</div>\n}\n\nexport default $1;"
 }
 
 local snippets = {
