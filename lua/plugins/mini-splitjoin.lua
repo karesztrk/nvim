@@ -1,5 +1,5 @@
 vim.pack.add({
-  "https://github.com/nvim-mini/mini.splitjoin.git",
+    "https://github.com/nvim-mini/mini.splitjoin.git",
 })
 
 -- mini.splitjoin configuration

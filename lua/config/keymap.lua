@@ -38,19 +38,19 @@ vim.keymap.set("v", ">", ">gv", { desc = "Indent right and reselect" })
 
 -- Navigation & pickers
 vim.keymap.set("n", "<leader>e", function()
-  require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
+    require("mini.files").open(vim.api.nvim_buf_get_name(0), true)
 end, { desc = "Open file explorer" })
 vim.keymap.set("n", "<leader><space>", ":Pick files<CR>", { desc = "Find file" })
 vim.keymap.set("n", "<leader>sg", ":Pick grep_live<CR>", { desc = "Find in files" })
 vim.keymap.set("n", "<leader>,", ":Pick buffers<CR>", { desc = "Find in buffers" })
 vim.keymap.set("n", "<leader>sR", ":Pick resume<CR>", { desc = "Find in buffers" })
 vim.keymap.set('n', '<leader>fc', function()
-  require('mini.pick').builtin.files({}, {
-    source = {
-      name = 'Config Files',
-      cwd = vim.fn.stdpath('config')
-    }
-  })
+    require('mini.pick').builtin.files({}, {
+        source = {
+            name = 'Config Files',
+            cwd = vim.fn.stdpath('config')
+        }
+    })
 end, { desc = 'Find NeoVim Config' })
 
 -- Better J behavior
@@ -67,9 +67,9 @@ vim.keymap.set("n", "qq", "<cmd>q!<cr>", { desc = "Fast quit" })
 
 -- Copy path
 vim.keymap.set("n", "<leader>@", function()
-  local path = vim.fn.expand("%:p")
-  vim.fn.setreg("+", path)
-  print("file:", path)
+    local path = vim.fn.expand("%:p")
+    vim.fn.setreg("+", path)
+    print("file:", path)
 end, { desc = "Copy file path" })
 
 -- Quickly source current file / execute Lua code
@@ -85,7 +85,7 @@ vim.keymap.set("n", "<leader>dd", '<Cmd>:FloatingTerminal lazydocker<CR>', { des
 vim.keymap.set("n", "<leader>tt", '<Cmd>:FloatingTerminal<CR>', { desc = "Toggle floating terminal" })
 vim.keymap.set("t", "qq", '<Cmd>:CloseFloatingTerminal<CR>', { desc = "Close floating terminal from terminal mode" })
 vim.keymap.set("t", "<leader>q", '<Cmd>:NormalFloatingTerminal<CR>',
-  { desc = "Close floating terminal from terminal mode" })
+    { desc = "Close floating terminal from terminal mode" })
 
 -- Auto-close pairs
 vim.keymap.set("i", "`", "``<left>")
@@ -103,23 +103,22 @@ vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = 
 vim.keymap.set("n", "<leader>K", "<cmd>norm! K<cr>", { desc = "Keywordprg" })
 
 vim.keymap.set("n", "<leader>xl", function()
-  local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
+    local success, err = pcall(vim.fn.getloclist(0, { winid = 0 }).winid ~= 0 and vim.cmd.lclose or vim.cmd.lopen)
+    if not success and err then
+        vim.notify(err, vim.log.levels.ERROR)
+    end
 end, { desc = "Location List" })
 
 vim.keymap.set("n", "<leader>xq", function()
-  local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
-  if not success and err then
-    vim.notify(err, vim.log.levels.ERROR)
-  end
+    local success, err = pcall(vim.fn.getqflist({ winid = 0 }).winid ~= 0 and vim.cmd.cclose or vim.cmd.copen)
+    if not success and err then
+        vim.notify(err, vim.log.levels.ERROR)
+    end
 end, { desc = "Quickfix List" })
 
 -- Diagnostic & code action keymaps
 vim.keymap.set("n", "<leader>ca", vim.lsp.buf.code_action, { desc = "Code Actions" })
 vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
-vim.keymap.set("n", "K", vim.lsp.buf.hover, { desc = "Hover (alt)" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
@@ -127,17 +126,17 @@ vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diag
 -- Daily notes keymaps
 local notes = require("notes")
 vim.keymap.set("n", "<leader>fd", function()
-  local current_line = vim.api.nvim_get_current_line()
-  local date_line = current_line:match("%[%[%d+%-%d+%-%d+%-%w+%]%]") or ("[[" .. os.date("%Y-%m-%d-%A") .. "]]")
-  notes.switch_to_daily_note(date_line)
+    local current_line = vim.api.nvim_get_current_line()
+    local date_line = current_line:match("%[%[%d+%-%d+%-%d+%-%w+%]%]") or ("[[" .. os.date("%Y-%m-%d-%A") .. "]]")
+    notes.switch_to_daily_note(date_line)
 end, { desc = "Go to or create daily note" })
 
 vim.keymap.set("n", "<leader>fA", function()
-  notes.create_next_n_days(1)
+    notes.create_next_n_days(1)
 end, { desc = "Create next day's daily note from current file" })
 
 vim.keymap.set("n", "<leader>fW", function()
-  notes.create_next_n_days(7)
+    notes.create_next_n_days(7)
 end, { desc = "Create next week's daily notes from current file" })
 
 
@@ -145,20 +144,20 @@ end, { desc = "Create next week's daily notes from current file" })
 local auto_format = true
 
 vim.keymap.set("n", "<leader>uf", function()
-  auto_format = not auto_format
-  if auto_format then
-    vim.cmd("FormatEnable")
-  else
-    vim.cmd("FormatDisable")
-  end
+    auto_format = not auto_format
+    if auto_format then
+        vim.cmd("FormatEnable")
+    else
+        vim.cmd("FormatDisable")
+    end
 end, { desc = "Toggle Autoformat" })
 
 vim.keymap.set({ "n", "v" }, "<leader>cf", function()
-  require("conform").format({ async = true }, function(err, did_edit)
-    if not err and did_edit then
-      vim.notify("Code formatted", vim.log.levels.INFO, { title = "Conform" })
-    end
-  end)
+    require("conform").format({ async = true }, function(err, did_edit)
+        if not err and did_edit then
+            vim.notify("Code formatted", vim.log.levels.INFO, { title = "Conform" })
+        end
+    end)
 end, { desc = "Format buffer" })
 
 -- Git
@@ -170,16 +169,19 @@ vim.keymap.set("n", "<leader>ghp", '<Cmd>:Gitsigns preview_hunk_inline<CR>', { d
 -- Snippets
 vim.keymap.set('i', '<C-k>', '<cmd>lua _G.expand_snippet()<CR>', { desc = 'Expand snippet' })
 vim.keymap.set({ 'i', 's' }, '<Tab>', function()
-  if vim.snippet.active({ direction = 1 }) then
-    return '<cmd>lua vim.snippet.jump(1)<cr>'
-  else
-    return '<Tab>'
-  end
+    if vim.snippet.active({ direction = 1 }) then
+        return '<cmd>lua vim.snippet.jump(1)<cr>'
+    else
+        return '<Tab>'
+    end
 end, { expr = true, desc = 'Jump forward through tabstops' })
 vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
-  if vim.snippet.active({ direction = -1 }) then
-    return '<cmd>lua vim.snippet.jump(-1)<cr>'
-  else
-    return '<S-Tab>'
-  end
+    if vim.snippet.active({ direction = -1 }) then
+        return '<cmd>lua vim.snippet.jump(-1)<cr>'
+    else
+        return '<S-Tab>'
+    end
 end, { expr = true, desc = 'Jump backward through tabstops' })
+
+-- Marks
+vim.keymap.set("n", "<leader>sm", '<Cmd>lua _G.select_mark()<CR>', { desc = "Search marks" })
