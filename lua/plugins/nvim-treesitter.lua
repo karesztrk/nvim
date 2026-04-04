@@ -9,7 +9,6 @@ vim.pack.add({
 require("nvim-treesitter").install {
     "astro",
     "bash",
-    "fish",
     "comment",
     "css",
     "diff",
@@ -19,6 +18,7 @@ require("nvim-treesitter").install {
     "gitignore",
     "html",
     "javascript",
+    "jjdescription",
     "jsdoc",
     "json",
     "lua",

@@ -109,6 +109,16 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end,
 })
 
+-- Tree-sitter highlighting
+vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("EnableTreesitterHighlighting", { clear = true }),
+    desc = "Try to enable tree-sitter syntax highlighting",
+    pattern = "*", -- run on *all* filetypes
+    callback = function()
+        pcall(function() vim.treesitter.start() end)
+    end,
+})
+
 -- Formatting
 vim.api.nvim_create_user_command("FormatDisable", function(opts)
     if opts.bang then
