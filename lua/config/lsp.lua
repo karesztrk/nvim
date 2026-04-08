@@ -3,7 +3,7 @@
 
 -- This actually just enables the lsp servers.
 -- The configuration is found in the lsp folder inside the nvim config folder,
--- so in ~.config/lsp/lua_ls.lua for lua_ls, for example.
+-- so in nvim-lspconfig/lsp/lua_ls.lua for lua_ls, for example.
 vim.lsp.enable({
     "astro",  -- @astrojs/language-server
     "biome",  -- @biomejs/biome
@@ -11,7 +11,7 @@ vim.lsp.enable({
     "eslint", -- vscode-langservers-extracted
     "html",   -- vscode-langservers-extracted
     "lua_ls", -- lua-language-server
-    "vtsls"   -- @vtsls/language-server
+    "tsgo"    -- @typescript/native-preview
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -24,18 +24,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 convert = function(item)
                     return { abbr = item.label:gsub("%b()", "") }
                 end,
+                cmp = function(a, b)
+                    -- Prioritize items starting with underscore lower
+                    local a_underscore = a.word:match('^_')
+                    local b_underscore = b.word:match('^_')
+
+                    if a_underscore ~= b_underscore then
+                        return b_underscore
+                    end
+
+                    -- Fall back to default sort
+                    local item_a = a.user_data.nvim.lsp.completion_item
+                    local item_b = b.user_data.nvim.lsp.completion_item
+                    return (item_a.sortText or item_a.label) < (item_b.sortText or item_b.label)
+                end
             })
         end
 
+
         -- Inlay hints
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHints) then
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_inlayHint) then
             vim.lsp.inlay_hint.enable(true, { bufnr = args.buf })
         end
 
+        -- Coloring
         if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_documentColor) then
             vim.lsp.document_color.enable(true, { bufnr = args.buf }, {
                 style = "background", -- 'background', 'foreground', or 'virtual'
             })
+        end
+
+        -- Code lens (experimental)
+        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
+            vim.lsp.codelens.enable(true, { bufnr = args.buf })
         end
     end,
 })
