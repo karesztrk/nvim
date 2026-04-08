@@ -95,6 +95,31 @@ vim.keymap.set("i", "[", "[]<left>")
 vim.keymap.set("i", "{", "{}<left>")
 vim.keymap.set("i", "<", "<><left>")
 
+-- Check character under/after cursor
+local function get_cursor_char(offset)
+    local row, col = unpack(vim.api.nvim_win_get_cursor(0))
+    local line = vim.api.nvim_get_current_line()
+    return line:sub(col + 1 + offset, col + 1 + offset)
+end
+
+vim.keymap.set('i', '<CR>', function()
+    local prev = get_cursor_char(-1)
+    local next = get_cursor_char(0)
+    if prev == '{' and next == '}' then
+        return '<CR><CR><Up><Tab>'
+    end
+    return '<CR>'
+end, { noremap = true, expr = true })
+
+vim.keymap.set('i', '<BS>', function()
+    local prev = get_cursor_char(-1)
+    local next = get_cursor_char(0)
+    if '}' == next then
+        return '<Right><BS><BS>'
+    end
+    return '<BS>'
+end, { noremap = true, expr = true })
+
 -- Commenting (add comment above/below current line)
 vim.keymap.set("n", "gco", "o<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Below" })
 vim.keymap.set("n", "gcO", "O<esc>Vcx<esc><cmd>normal gcc<cr>fxa<bs>", { desc = "Add Comment Above" })
@@ -122,6 +147,7 @@ vim.keymap.set("n", "<leader>cr", vim.lsp.buf.rename, { desc = "Code Rename" })
 vim.keymap.set("n", "gd", vim.lsp.buf.definition, { desc = "Goto Definition" })
 vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait = true })
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
+vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run Code Lens', })
 
 -- Daily notes keymaps
 local notes = require("notes")
