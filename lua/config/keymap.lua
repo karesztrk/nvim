@@ -149,6 +149,45 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait 
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run Code Lens', })
 
+-- Auto-complete
+vim.keymap.set("i", "<C-Space>", function()
+    local clients = vim.lsp.get_clients({ bufnr = 0 })
+
+    if next(clients) ~= nil then
+        vim.lsp.completion.get()
+    else
+        local key = vim.keycode("<C-x><C-n>")
+        vim.api.nvim_feedkeys(key, "m", false)
+    end
+end, {})
+
+-- Press <Tab> for the next autocomplete item
+vim.keymap.set("i", "<Tab>", function()
+    local key = vim.keycode("<Tab>")
+    if vim.fn.pumvisible() == 1 then
+        key = vim.keycode("<C-n>")
+    end
+    vim.api.nvim_feedkeys(key, "n", false)
+end, {})
+
+-- Press <Down> for the next autocomplete item
+vim.keymap.set("i", "<Down>", function()
+    local key = vim.keycode("<Down>")
+    if vim.fn.pumvisible() == 1 then
+        key = vim.keycode("<C-n>")
+    end
+    vim.api.nvim_feedkeys(key, "n", false)
+end, {})
+
+-- Press <Up> for the previous autocomplete item
+vim.keymap.set("i", "<Up>", function()
+    local key = vim.keycode("<Up>")
+    if vim.fn.pumvisible() == 1 then
+        key = vim.keycode("<C-p>")
+    end
+    vim.api.nvim_feedkeys(key, "n", false)
+end, {})
+
 -- Daily notes keymaps
 local notes = require("notes")
 vim.keymap.set("n", "<leader>fd", function()

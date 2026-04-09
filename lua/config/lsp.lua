@@ -11,7 +11,7 @@ vim.lsp.enable({
     "eslint", -- vscode-langservers-extracted
     "html",   -- vscode-langservers-extracted
     "lua_ls", -- lua-language-server
-    "tsgo"    -- @typescript/native-preview
+    "ts_ls"   -- typescript-language-server
 })
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -61,43 +61,39 @@ vim.api.nvim_create_autocmd('LspAttach', {
     end,
 })
 
-vim.keymap.set("i", "<C-Space>", function()
-    local clients = vim.lsp.get_clients({ bufnr = 0 })
+vim.lsp.config('ts_ls', {
+    settings = {
+        typescript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'literals',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = false,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+            referencesCodeLens = { enabled = true, showOnAllFunctions = false },
+            implementationsCodeLens = { enabled = false },
+        },
+        javascript = {
+            inlayHints = {
+                includeInlayParameterNameHints = 'literals',
+                includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+                includeInlayFunctionParameterTypeHints = true,
+                includeInlayVariableTypeHints = false,
+                includeInlayVariableTypeHintsWhenTypeMatchesName = false,
+                includeInlayPropertyDeclarationTypeHints = true,
+                includeInlayFunctionLikeReturnTypeHints = true,
+                includeInlayEnumMemberValueHints = true,
+            },
+            referencesCodeLens = { enabled = true, showOnAllFunctions = false },
+            implementationsCodeLens = { enabled = false },
+        },
+    },
+})
 
-    if next(clients) ~= nil then
-        vim.lsp.completion.get()
-    else
-        local key = vim.keycode("<C-x><C-n>")
-        vim.api.nvim_feedkeys(key, "m", false)
-    end
-end, {})
-
--- Press <Tab> for the next autocomplete item
-vim.keymap.set("i", "<Tab>", function()
-    local key = vim.keycode("<Tab>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-n>")
-    end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
-
--- Press <Down> for the next autocomplete item
-vim.keymap.set("i", "<Down>", function()
-    local key = vim.keycode("<Down>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-n>")
-    end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
-
--- Press <Up> for the previous autocomplete item
-vim.keymap.set("i", "<Up>", function()
-    local key = vim.keycode("<Up>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-p>")
-    end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
 
 -- Diagnostics
 vim.diagnostic.config({
