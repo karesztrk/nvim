@@ -53,11 +53,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
                 style = "background", -- 'background', 'foreground', or 'virtual'
             })
         end
-
-        -- Code lens (experimental)
-        if client and client:supports_method(vim.lsp.protocol.Methods.textDocument_codeLens) then
-            vim.lsp.codelens.enable(true, { bufnr = args.buf })
-        end
     end,
 })
 
@@ -74,8 +69,6 @@ vim.lsp.config('ts_ls', {
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
             },
-            referencesCodeLens = { enabled = true, showOnAllFunctions = false },
-            implementationsCodeLens = { enabled = false },
         },
         javascript = {
             inlayHints = {
@@ -88,8 +81,6 @@ vim.lsp.config('ts_ls', {
                 includeInlayFunctionLikeReturnTypeHints = true,
                 includeInlayEnumMemberValueHints = true,
             },
-            referencesCodeLens = { enabled = true, showOnAllFunctions = false },
-            implementationsCodeLens = { enabled = false },
         },
     },
 })

@@ -149,44 +149,37 @@ vim.keymap.set("n", "gr", vim.lsp.buf.references, { desc = "References", nowait 
 vim.keymap.set("n", "<leader>cd", vim.diagnostic.open_float, { desc = "Line Diagnostics" })
 vim.keymap.set('n', '<leader>cl', vim.lsp.codelens.run, { desc = 'Run Code Lens', })
 
--- Auto-complete
+-- Auto-complete menu
 vim.keymap.set("i", "<C-Space>", function()
     local clients = vim.lsp.get_clients({ bufnr = 0 })
 
     if next(clients) ~= nil then
         vim.lsp.completion.get()
+        return ''
     else
-        local key = vim.keycode("<C-x><C-n>")
-        vim.api.nvim_feedkeys(key, "m", false)
+        return vim.keycode("<C-x><C-n>")
     end
-end, {})
+end, { expr = true, silent = true, desc = 'Open autocomplete menu' })
 
--- Press <Tab> for the next autocomplete item
-vim.keymap.set("i", "<Tab>", function()
-    local key = vim.keycode("<Tab>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-n>")
+vim.keymap.set({ 'i', 's' }, '<Tab>', function()
+    if vim.snippet.active({ direction = 1 }) then
+        return '<cmd>lua vim.snippet.jump(1)<cr>'
+    elseif vim.fn.pumvisible() == 1 then
+        return '<C-n>'
+    else
+        return '<Tab>'
     end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
+end, { expr = true, silent = true, desc = 'Snippet jump forward or next completion item' })
 
--- Press <Down> for the next autocomplete item
-vim.keymap.set("i", "<Down>", function()
-    local key = vim.keycode("<Down>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-n>")
+vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
+    if vim.snippet.active({ direction = -1 }) then
+        return '<cmd>lua vim.snippet.jump(-1)<cr>'
+    elseif vim.fn.pumvisible() == 1 then
+        return '<C-p>'
+    else
+        return '<S-Tab>'
     end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
-
--- Press <Up> for the previous autocomplete item
-vim.keymap.set("i", "<Up>", function()
-    local key = vim.keycode("<Up>")
-    if vim.fn.pumvisible() == 1 then
-        key = vim.keycode("<C-p>")
-    end
-    vim.api.nvim_feedkeys(key, "n", false)
-end, {})
+end, { expr = true, silent = true, desc = 'Snippet jump backward or previous completion item' })
 
 -- Daily notes keymaps
 local notes = require("notes")
@@ -233,20 +226,6 @@ vim.keymap.set("n", "<leader>ghp", '<Cmd>:Gitsigns preview_hunk_inline<CR>', { d
 
 -- Snippets
 vim.keymap.set('i', '<C-k>', '<cmd>lua _G.expand_snippet()<CR>', { desc = 'Expand snippet' })
-vim.keymap.set({ 'i', 's' }, '<Tab>', function()
-    if vim.snippet.active({ direction = 1 }) then
-        return '<cmd>lua vim.snippet.jump(1)<cr>'
-    else
-        return '<Tab>'
-    end
-end, { expr = true, desc = 'Jump forward through tabstops' })
-vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
-    if vim.snippet.active({ direction = -1 }) then
-        return '<cmd>lua vim.snippet.jump(-1)<cr>'
-    else
-        return '<S-Tab>'
-    end
-end, { expr = true, desc = 'Jump backward through tabstops' })
 
 -- Marks
 vim.keymap.set("n", "<leader>sm", '<Cmd>lua _G.select_mark()<CR>', { desc = "Search marks" })
