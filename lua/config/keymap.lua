@@ -161,6 +161,7 @@ vim.keymap.set("i", "<C-Space>", function()
     end
 end, { expr = true, silent = true, desc = 'Open autocomplete menu' })
 
+
 vim.keymap.set({ 'i', 's' }, '<Tab>', function()
     if vim.snippet.active({ direction = 1 }) then
         return '<cmd>lua vim.snippet.jump(1)<cr>'
@@ -180,6 +181,10 @@ vim.keymap.set({ 'i', 's' }, '<S-Tab>', function()
         return '<S-Tab>'
     end
 end, { expr = true, silent = true, desc = 'Snippet jump backward or previous completion item' })
+
+vim.keymap.set('i', '<CR>', function()
+    return vim.fn.pumvisible() == 1 and '<C-y>' or '<CR>'
+end, { expr = true, silent = true, desc = 'Confirm completion or newline' })
 
 -- Daily notes keymaps
 local notes = require("notes")
